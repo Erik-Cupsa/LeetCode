@@ -1,0 +1,13 @@
+class Solution(object):
+    def strStr(self, haystack, needle):
+        left = 0
+        right = len(needle)
+        while right <= len(haystack):
+            curr = haystack[left:right]
+            if curr == needle:
+                return left
+            else:
+                left += 1
+                right += 1
+        return -1
+        
