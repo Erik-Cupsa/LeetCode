@@ -1,0 +1,15 @@
+class Solution(object):
+    def searchInsert(self, nums, target):
+        l = len(nums)//2
+        test = nums[l]
+        if target < test:
+            count = 0
+            nums = nums[:l]
+        else: 
+            count = l
+            nums = nums[l:]
+        for num in nums:
+            if num >= target:
+                return count
+            count += 1
+        return count
