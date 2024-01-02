@@ -1,0 +1,22 @@
+class Solution(object):
+    def plusOne(self, digits):
+        digits = digits[::-1]
+        max = len(digits) - 1
+        for i, num in enumerate(digits):
+            curr = num
+            curr += 1
+            if curr == 10:
+                if i == max:
+                    print(i)
+                    digits[i] = 0
+                    digits.append(1)
+                    break
+                else:
+                    digits[i] = 0
+                    continue
+            else:
+                digits[i] = curr
+                break
+        digits = digits[::-1]
+        return digits
+        
