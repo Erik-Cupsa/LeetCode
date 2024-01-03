@@ -1,0 +1,12 @@
+class Solution(object):
+    def numberOfBeams(self, bank):
+        prevRow = 0
+        total = 0
+
+        for row in bank:
+            currRow = row.count('1')
+            if currRow == 0:
+                continue
+            total += currRow * prevRow
+            prevRow = currRow
+        return total
