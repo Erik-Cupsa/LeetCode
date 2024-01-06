@@ -1,23 +1,23 @@
 class Solution(object):
-    def lengthOfLIS(self, nums):
-        dp = [0] * len(nums)
-        size = 0
-
-        for num in nums:
-            i = 0
-            j = size
-            while i != j: 
-                mid = i + (j-i) // 2
-
-                if dp[mid] < num:
-                    i = mid + 1
-                else: 
-                    j = mid
-            
-            dp[i] = num
-
-            if i == size:
-                size += 1
+    def jobScheduling(self, startTime, endTime, profit):
+        def binarySearch(jobs, start):
+            low = 0
+            high = len(jobs) - 1
+            while low <= high:
+                mid = low + (high-low) // 2
+                if jobs[mid][0] <= start:
+                    low = mid + 1
+                else:
+                    high = mid - 1
+            return high
         
-        return size
+        jobs = sorted(zip(startTime, endTime, profit), key=lambda v: v[1])
         
+        dp = [(0, 0)]
+
+        for start, end, profit in jobs:
+            i = binarySearch(dp, start)
+            if dp[i][1] + profit > dp[-1][1]:
+                dp.append((end, dp[i][1] + profit))
+        
+        return dp[-1][1]
