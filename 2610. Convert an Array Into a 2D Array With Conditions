@@ -1,0 +1,16 @@
+class Solution(object):
+    def findMatrix(self, nums):
+        dic = {}
+        result = []
+        for num in nums:
+            if num not in dic:
+                idx = 0
+            else: 
+                idx = dic.get(num)
+            if idx >= len(result):
+                result.append([])
+            result[idx].append(num)
+            dic[num] = dic.get(num, 0) + 1
+        return result
+        
+        
